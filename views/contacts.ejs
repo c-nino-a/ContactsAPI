@@ -1,0 +1,21 @@
+<table>
+    <thead>
+        <tr>
+            <li>first name</li>
+            <li>last name</li>
+        </tr>
+    </thead>
+    <tbody>
+        <% contacts.forEach(i=>{%>
+            <tr>
+                <td>
+                    <%= i.firstname %>
+                </td>
+                <td>
+                    <%= i.lastname %>
+                </td>
+            </tr>
+            <% }) %>
+
+    </tbody>
+</table>
