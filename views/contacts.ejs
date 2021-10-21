@@ -1,13 +1,13 @@
-<table>
+<table class='people-tbl'>
     <thead>
         <tr>
-            <li>first name</li>
-            <li>last name</li>
+            <th>First name</th>
+            <th>Last name</th>
         </tr>
     </thead>
     <tbody>
         <% contacts.forEach(i=>{%>
-            <tr>
+            <tr data-id='<%=i.id%>'>
                 <td>
                     <%= i.firstname %>
                 </td>
@@ -18,9 +18,3 @@
             <% }) %>
     </tbody>
 </table>
-
-<form action="/person" method="post">
-    <input type="text" name='firstname'>
-    <input type="text" name='lastname'>
-    <button>Submit</button>
-</form>
