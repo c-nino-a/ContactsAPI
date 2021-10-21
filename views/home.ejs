@@ -8,14 +8,25 @@
     <title>Sample</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='/semantic-ui/semantic.min.css'>
     <link rel="stylesheet" href="/style.css">
 
 </head>
 
 <body>
-    <%- include('contacts') %>
-
+    <div id='loading' class='ui message yellow'>Loading...</div>
+    <div class='pane left-pane'>
+        <%- include('contacts') %>
+    </div>
+    <div class='pane right-pane'>
+        <div id='content'></div>
+    </div>
 </body>
+<script src="/jquery.js"></script>
+<script src="/semantic-ui/semantic.min.js"></script>
 <script src="/app.js"></script>
 
 </html>
