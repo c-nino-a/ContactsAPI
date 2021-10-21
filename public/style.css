@@ -1,0 +1,44 @@
+html,
+body {
+    height: 100%
+}
+
+body {
+    height: 100%;
+    position: relative;
+}
+
+#msg {
+    font-weight: bold;
+    display: none;
+    color: rgb(255, 145, 0)
+}
+
+#loading {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: none;
+    font-weight: bold;
+    background-color: blanchedalmond;
+    padding: 10px;
+}
+
+.pane {
+    padding: 10px;
+    float: left;
+}
+
+.left-pane {
+    width: 300px;
+}
+
+.right-pane {
+    border-left: 1px solid black;
+    height: 100%;
+}
+
+.inputbox {
+    padding: 10px;
+    background-color: coral;
+}
