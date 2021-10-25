@@ -1,6 +1,11 @@
 <table class='people-tbl'>
     <thead>
         <tr>
+            <th>
+                <a href="javascript:" class='ui button icon p-btn-add'>
+                    <i class='icon plus'></i>
+                </a>
+            </th>
             <th>First name</th>
             <th>Last name</th>
         </tr>
@@ -8,6 +13,11 @@
     <tbody>
         <% contacts.forEach(i=>{%>
             <tr data-id='<%=i.id%>'>
+                <td>
+                    <a href="javascript:" class='ui button icon p-btn-remove'>
+                        <i class='icon close'></i>
+                    </a>
+                </td>
                 <td>
                     <%= i.firstname %>
                 </td>
