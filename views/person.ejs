@@ -11,6 +11,45 @@
     </div>
     <button class='ui button blue'>Submit</button>
     <div id='msg' class='ui message green'>Changes Saved</div>
+    <div>
+        <table class="ea-tbl">
+            <thead>
+                <tr>
+                    <th>
+                        <a href="javascript:" class='ui button icon ea-btn-add'>
+                            <i class='icon plus'></i>
+                        </a>
+
+                    </th>
+                    <th>
+                        Email Address
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% emailaddresses?.forEach(emailaddress=>{ %>
+                    <tr>
+                        <td>
+                            <a href="javascript:" class='ui button icon ea-btn-remove'>
+                                <i class='icon close'></i>
+                            </a>
+                        </td>
+                        <td class='field'>
+                            <input type='text' name='emailaddresses' value='<%=emailaddress%>'>
+
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+    </div>
 </form>
 
 <script src="/person-form.js"></script>
