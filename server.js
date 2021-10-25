@@ -12,10 +12,12 @@ server
     .set('view engine', 'ejs')
     .use(express.static('public'))
 
-.use("/contacts", require('./routes/contacts'))
-    .use("/person", require('./routes/person'))
-    .use("/contact", require('./routes/contact'))
+// .use("/contacts", require('./routes/contacts'))
+// .use("/person", require('./routes/person'))
+// .use("/contact", require('./routes/contact'))
 
 .listen(3000, () => {
     console.log("server running")
 })
+
+require('./services/routeService')(server)
