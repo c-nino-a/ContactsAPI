@@ -42,3 +42,17 @@ body {
     padding: 10px;
     background-color: coral;
 }
+
+.people-tbl {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.people-tbl tbody tr:hover {
+    cursor: pointer;
+    background-color: aqua;
+}
+
+.people-tbl tbody tr td {
+    padding: 5px;
+}
