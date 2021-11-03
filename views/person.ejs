@@ -42,14 +42,44 @@
                     <% }) %>
             </tbody>
         </table>
-
-
-
-
-
-
-
     </div>
+    <div>
+        <table class="pa-tbl">
+            <thead>
+                <th>
+                    <a href="javascript:" class='ui button icon pa-btn-add'>
+                        <i class="icon plus"></i>
+                    </a>
+                </th>
+                <th>Street</th>
+                <th>City</th>
+                <th>Zip code</th>
+            </thead>
+            <tbody>
+                <% postaladdresses?.forEach((pa,index)=>{ %>
+                    <tr>
+                        <td>
+                            <a href='javascript:' class='ui button icon pa-btn-remove'>
+                                <i class='icon close'></i>
+                            </a>
+                        </td>
+                        <td class='field'>
+                            <input type="hidden" name="postaladdresses[<%= index %>].id" value='<%= pa.id%>'>
+                            <input type='text ' name='postaladdresses[<%= index %>].street ' value="<%=pa.street%>"></td>
+                        <td class='field'>
+                            <input type='text ' name='postaladdresses[<%= index %>].city ' value="<%=pa.city%>">
+                        </td>
+                        <td class='field'>
+                            <input type='text ' name='postaladdresses[<%= index %>].zipcode ' value="<%=pa.zipcode%>">
+                        </td>
+
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <button class="ui button blue">Send</button>
+    <div id="msg" class='ui message green'>Saved</div>
 </form>
 
 <script src="/person-form.js"></script>

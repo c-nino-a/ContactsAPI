@@ -32,17 +32,30 @@ $(function() {
 
     })
 
-    $('.people-tbl tbody tr .p-btn-remove').on('click', function() {
+    $('.people-tbl tbody tr .p-btn-remove').on('click', function(e) {
 
         var btn = $(this)
         var tr = btn.closest('tr')
         var id = tr.data('id')
-        $.ajax({
-            url: '/contact/' + id,
-            type: 'DELETE',
-            success: function() { tr.remove() }
+        var children = tr.children()
+        var firstname = children.eq(1).html()
+        var lastname = children.eq(2).html()
 
-        })
+        if (confirm(`Are you sure about deleting ${firstname} ${lastname}?`)) {
+            $.ajax({
+                url: '/contact/' + id,
+                type: 'DELETE',
+                success: function() {
+                    tr.remove()
+                    $("#content").empty()
+                }
+
+            })
+
+            alert("Entry deleted.")
+        }
+
+
 
         return false
     })
