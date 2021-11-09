@@ -4,10 +4,10 @@ const db = require("./dbPool")
 
 module.exports = async(id) => {
     const query = await db.query(
-        `SELECT p.id, p.firstname, p.lastname, p.emailaddresses, 
+        `SELECT p.p_id id, p.firstname, p.lastname, p.emailaddresses, 
         json_agg(
             json_build_object(
-                'id', pa.id,
+                'id', pa.pa_id,
                 'street', pa.street,
                 'city', pa.city,
             'zipcode', pa.zipcode
@@ -19,14 +19,14 @@ module.exports = async(id) => {
         
         FROM people p
         
-        JOIN postaladdresses pa
+        LEFT JOIN postaladdresses pa
 
-        ON p.id = pa.p_id
+        ON p.p_id = pa.p_id
         
         
-        WHERE p.id=$1
+        WHERE p.p_id=$1
         
-        GROUP BY p.id, p.firstname, p.lastname, p.emailaddresses
+        GROUP BY p.p_id, p.firstname, p.lastname, p.emailaddresses
         
         `, [id]
 

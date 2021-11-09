@@ -9,7 +9,8 @@ route
             id: null,
             firstname: null,
             lastname: null,
-            emailaddresses: null
+            emailaddresses: null,
+            postaladdresses: null
         })
 
     })
@@ -31,8 +32,8 @@ route
 })
 
 .post('/', async(request, response) => {
-    const { body } = request
-    await upsertPerson(body)
+
+    await upsertPerson(request.body)
     response.end()
 
 })

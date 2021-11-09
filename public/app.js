@@ -22,7 +22,6 @@ $(function() {
 
         var tr = $(this)
         var id = tr.data('id')
-            // location.href = '/contact/' + id
         $.ajax({
             url: '/contact/' + id,
             success: function(html) {
