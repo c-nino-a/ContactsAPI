@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         <% contacts.forEach(i=>{%>
-            <tr data-id='<%=i.id%>'>
+            <tr data-id='<%- functions.encrypt(i.id) %>'>
                 <td>
                     <a href="javascript:" class='ui button icon p-btn-remove'>
                         <i class='icon close'></i>
