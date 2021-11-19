@@ -1,3 +1,5 @@
+var modules = {}
+
 $.ajaxSetup({
     beforeSend: function() {
 
@@ -22,12 +24,13 @@ $(function() {
 
         var tr = $(this)
         var id = tr.data('id')
-        $.ajax({
-            url: '/contact/' + id,
-            success: function(html) {
-                $('#content').html(html)
-            }
-        })
+            // $.ajax({
+            //     url: '/contact/' + id,
+            //     success: function(html) {
+            //         $('#content').html(html)
+            //     }
+            // })
+        location.hash = 'contact/' + id;
 
     })
 
@@ -41,7 +44,7 @@ $(function() {
         var lastname = children.eq(2).html()
 
         if (confirm(`Are you sure about deleting ${firstname} ${lastname}?`)) {
-            $.ajax({
+            app.ajax({
                 url: '/contact/' + id,
                 type: 'DELETE',
                 success: function() {
@@ -62,7 +65,7 @@ $(function() {
     $('.people-tbl thead tr .p-btn-add').on('click', function() {
 
 
-        $.ajax({
+        app.ajax({
             url: '/contact/new',
             success: function(html) {
                 $('#content').html(html)
@@ -71,5 +74,79 @@ $(function() {
         })
     })
 
-
+    window.onhashchange = function() {
+        var hash = location.hash.replace('#', '');
+        if (!hash) return;
+        app.ajax({
+            url: hash,
+            success: function(html) {
+                $('#content').html(html)
+                $('#content').fadeIn()
+            }
+        })
+    }
 })
+
+var app = (function() {
+
+    function bindScripts(html) {
+
+        var scriptAttr = html.parent().find('[js-modules]');
+
+        if (!scriptAttr[0]) return;
+
+        for (var i = 0; i < scriptAttr.length; i++) {
+
+            item = scriptAttr[i];
+
+            item = $(item)
+
+            var scriptName = item.attr('js-modules');
+
+            item.removeAttr('js-modules');
+
+            // if (!scriptName) throw 'scriptname is empty';
+            if (scriptName) {
+
+                for (var name of scriptName.split(' ')) {
+
+                    var target = modules[name];
+
+                    if (!target) return
+
+                    target(item);
+                }
+            }
+        }
+    }
+
+    return {
+
+        ajax: function(options) {
+
+            if (options.success) {
+
+                var success = options.success
+
+                options.success = function(response, textStatus, xhr) {
+
+                    var ishtml = /<\/?[a-z][\s\S]*>/i.test(response)
+
+                    if (ishtml) {
+
+                        response = $(response)
+                    }
+
+                    success(response, textStatus, xhr)
+
+                    if (ishtml) {
+
+                        bindScripts(response)
+                    }
+                }
+            }
+
+            $.ajax(options)
+        }
+    }
+})()

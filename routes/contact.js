@@ -2,6 +2,8 @@ const fetchPerson = require('../services/dbService/fetchPerson.js')
 const upsertPerson = require('../services/dbService/upsertPerson.js')
 const deletePerson = require('../services/dbService/deletePerson.js')
 const route = require('express').Router()
+const cryptService = require('../services/cryptService')
+const decryptIdMid = require('../services/middleware/decryptIdMid')
 
 route
     .get('/new', async(request, response) => {
@@ -16,7 +18,7 @@ route
     })
 
 
-.get('/:id', async(request, response) => {
+    .get('/:id',decryptIdMid, async (request,response)=>{
     const { id } = request.params
     const data = await fetchPerson(id)
     response.render("person", data)

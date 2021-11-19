@@ -1,4 +1,4 @@
-const fetchPeople = require("../services/dbService/fetchPeople")
+const fetchPeople = require("../../services/dbService/fetchPeople")
 const route = require("express").Router()
 
 route

@@ -1,7 +1,10 @@
-$(function() {
+modules['person-form-js'] = function(_html) {
+    console.log("Loaded Person Form JS")
+    var _form = _html.find('.person-form')
 
-    var eatbl = $('.person-form .ea-tbl')
-    var patbl = $('.person-form .pa-tbl')
+    var eatblbody = _form.find('.ea-tbl tbody');
+    var patblbody = _form.find('.pa-tbl tbody');
+
 
     function removeEaTr(btn) {
         btn = $(btn)
@@ -19,21 +22,21 @@ $(function() {
         function() {
             // var btn = $(this)
 
-            var html =
+            var _html =
                 `<tr>
-            <td>
-              <a href="javascript:" class='ui button icon ea-btn-remove'>
-                   <i class='icon close'></i>
-                </a>
-             </td>
-             <td class='field'>
-                <input type='text' name='emailaddresses' value>
-    
-            </td>
-        </tr>`
-            html = $(html)
-            eatbl.append(html)
-            html.find('.ea-btn-remove').on('click', function() {
+                <td>
+                <a href="javascript:" class='ui button icon ea-btn-remove'>
+                    <i class='icon close'></i>
+                    </a>
+                </td>
+                <td class='field'>
+                    <input type='text' name='emailaddresses' value>
+        
+                </td>
+            </tr>`;
+            _html = $(_html);
+            eatblbody.append(_html)
+            _html.find('.ea-btn-remove').on('click', function() {
 
                 removeEaTr($(this))
 
@@ -44,29 +47,29 @@ $(function() {
     $('.person-form .pa-btn-add').on('click',
         function() {
             // var btn = $(this)
-            var ind = patbl.find('tbody tr').length
+            var ind = patblbody.find('tbody tr').length
 
-            var html =
+            var _html =
                 `<tr>
-                <td>
-                    <a href='javascript:' class='ui button icon pa-btn-remove'>
-                        <i class='icon close'></i>
-                    </a>
-                </td>
-                <td class='field'>
-                    <input type="hidden" name="postaladdresses[${ind}].id" value=>
-                    <input type='text ' name='postaladdresses[${ind}].street ' value=></td>
-                <td class='field'>
-                    <input type='text ' name='postaladdresses[${ind}].city ' value=>
-                </td>
-                <td class='field'>
-                    <input type='text ' name='postaladdresses[${ind}].zipcode ' value=>
-                </td>
+                    <td>
+                        <a href='javascript:' class='ui button icon pa-btn-remove'>
+                            <i class='icon close'></i>
+                        </a>
+                    </td>
+                    <td class='field'>
+                        <input type="hidden" name="postaladdresses[${ind}].id" value=>
+                        <input type='text ' name='postaladdresses[${ind}].street ' value=></td>
+                    <td class='field'>
+                        <input type='text ' name='postaladdresses[${ind}].city ' value=>
+                    </td>
+                    <td class='field'>
+                        <input type='text ' name='postaladdresses[${ind}].zipcode ' value=>
+                    </td>
 
-            </tr>`
-            html = $(html)
-            patbl.append(html)
-            html.find('.pa-btn-remove').on('click', function() {
+                </tr>`
+            _html = $(_html)
+            patblbody.append(_html)
+            _html.find('.pa-btn-remove').on('click', function() {
 
                 removePaTr($(this))
 
@@ -88,12 +91,12 @@ $(function() {
 
 
 
-    $('.person-form').on('submit', function(e) {
+    _form.on('submit', function(e) {
 
 
         e.preventDefault()
         var form = $(this)
-        $.ajax({
+        app.ajax({
 
             url: '/contact',
             type: 'POST',
@@ -107,7 +110,4 @@ $(function() {
 
     })
 
-
-
-
-})
+}

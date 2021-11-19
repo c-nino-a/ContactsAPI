@@ -1,10 +1,31 @@
-const db = require('./dbPool')
+const dbPool = require('./dbPool')
 
 module.exports = async id => {
+    try {
 
-    const query = await db.query(
-        `DELETE FROM people WHERE id=$1`, [id]
-    )
+        const db = await dbPool.connect()
 
-    return query
+        await db.query("BEGIN")
+
+        await db.query(
+
+            'DELETE FROM people WHERE p_id=' + id
+        )
+
+        await db.query(
+
+            'DELETE FROM postaladdresses WHERE p_id=' + id
+        )
+
+        await db.query("COMMIT");
+    } catch (error) {
+
+        console.log(error);
+
+        await db.query("ROLLBACK");
+
+    } finally {
+
+        db.release();
+    }
 }

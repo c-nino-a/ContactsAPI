@@ -1,91 +1,92 @@
-<form class="person-form ui form inputbox">
-    <input type="hidden" name="id" value="<%- id %>">
+<div js-modules="person-form-js">
+    <form class="person-form ui form inputbox">
+        <input type="hidden" name="id" value="<%- id %>">
 
-    <div class='field'>
-        <label>First Name</label>
-        <input type="text" name='firstname' value="<%- firstname %>">
-    </div>
-    <div class='field'>
-        <label>Last Name</label>
-        <input type="text" name='lastname' value="<%- lastname %>">
-    </div>
-    <button class='ui button blue'>Submit</button>
-    <div id='msg' class='ui message green'>Changes Saved</div>
-    <div>
-        <table class="ea-tbl">
-            <thead>
-                <tr>
+        <div class='field'>
+            <label>First Name</label>
+            <input type="text" name='firstname' value="<%- firstname %>">
+        </div>
+        <div class='field'>
+            <label>Last Name</label>
+            <input type="text" name='lastname' value="<%- lastname %>">
+        </div>
+        <button class='ui button blue'>Submit</button>
+        <div id='msg' class='ui message green'>Changes Saved</div>
+        <div>
+            <table class="ea-tbl">
+                <thead>
+                    <tr>
+                        <th>
+                            <a href="javascript:" class='ui button icon ea-btn-add'>
+                                <i class='icon plus'></i>
+                            </a>
+
+                        </th>
+                        <th>
+                            Email Address
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% emailaddresses?.forEach(emailaddress=>{ %>
+                        <tr>
+                            <td>
+                                <a href="javascript:" class='ui button icon ea-btn-remove'>
+                                    <i class='icon close'></i>
+                                </a>
+                            </td>
+                            <td class='field'>
+                                <input type='text' name='emailaddresses' value='<%=emailaddress%>'>
+
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <table class="pa-tbl">
+                <thead>
                     <th>
-                        <a href="javascript:" class='ui button icon ea-btn-add'>
-                            <i class='icon plus'></i>
+                        <a href="javascript:" class='ui button icon pa-btn-add'>
+                            <i class="icon plus"></i>
                         </a>
-
                     </th>
-                    <th>
-                        Email Address
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <% emailaddresses?.forEach(emailaddress=>{ %>
-                    <tr>
-                        <td>
-                            <a href="javascript:" class='ui button icon ea-btn-remove'>
-                                <i class='icon close'></i>
-                            </a>
-                        </td>
-                        <td class='field'>
-                            <input type='text' name='emailaddresses' value='<%=emailaddress%>'>
-
-                        </td>
-                    </tr>
-                    <% }) %>
-            </tbody>
-        </table>
-    </div>
-    <div>
-        <table class="pa-tbl">
-            <thead>
-                <th>
-                    <a href="javascript:" class='ui button icon pa-btn-add'>
-                        <i class="icon plus"></i>
-                    </a>
-                </th>
-                <th>Street</th>
-                <th>City</th>
-                <th>Zip code</th>
-            </thead>
-            <tbody>
-                <% postaladdresses?.forEach((pa,index)=>{ %>
-                    <tr>
-                        <td>
-                            <a href='javascript:' class='ui button icon pa-btn-remove'>
-                                <i class='icon close'></i>
-                            </a>
-                        </td>
-                        <div class='ui input'>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>Zip code</th>
+                </thead>
+                <tbody>
+                    <% postaladdresses?.forEach((pa,index)=>{ %>
+                        <tr>
                             <td>
-                                <input type="hidden" name="postaladdresses[<%= index %>].id" value='<%= pa.id%>'>
-                                <input type='text ' name='postaladdresses[<%= index %>].street ' value="<%=pa.street%>"></td>
-                        </div>
-                        <div class='ui input'>
-                            <td>
-                                <input type='text ' name='postaladdresses[<%= index %>].city ' value="<%=pa.city%>">
+                                <a href='javascript:' class='ui button icon pa-btn-remove'>
+                                    <i class='icon close'></i>
+                                </a>
                             </td>
-                        </div>
-                        <div class='ui input'>
-                            <td>
-                                <input type='text ' name='postaladdresses[<%= index %>].zipcode ' value="<%=pa.zipcode%>">
-                            </td>
-                        </div>
+                            <div class='ui input'>
+                                <td>
+                                    <input type="hidden" name="postaladdresses[<%= index %>].id" value='<%= pa.id%>'>
+                                    <input type='text ' name='postaladdresses[<%= index %>].street ' value="<%=pa.street%>"></td>
+                            </div>
+                            <div class='ui input'>
+                                <td>
+                                    <input type='text ' name='postaladdresses[<%= index %>].city ' value="<%=pa.city%>">
+                                </td>
+                            </div>
+                            <div class='ui input'>
+                                <td>
+                                    <input type='text ' name='postaladdresses[<%= index %>].zipcode ' value="<%=pa.zipcode%>">
+                                </td>
+                            </div>
 
-                    </tr>
-                    <% }) %>
-            </tbody>
-        </table>
-    </div>
-    <button class="ui button blue">Send</button>
-    <div id="msg" class='ui message green'>Saved</div>
-</form>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+        <button class="ui button blue">Send</button>
+        <div id="msg" class='ui message green'>Saved</div>
+    </form>
 
-<script src="/person-form.js"></script>
+</div>

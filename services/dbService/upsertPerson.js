@@ -12,6 +12,9 @@ module.exports = async({ firstname, lastname, id, emailaddresses, postaladdresse
         if (typeof emailaddresses === 'string') {
             emailaddresses = [emailaddresses]
         }
+        if (postaladdresses == undefined) {
+            postaladdresses = [];
+        }
 
 
         if (id == "") {
@@ -39,6 +42,10 @@ module.exports = async({ firstname, lastname, id, emailaddresses, postaladdresse
             if (pa_ids.length > 0) {
                 await db.query(
                     `DELETE FROM postaladdresses WHERE pa_id NOT IN (${pa_ids}) AND p_id = '${id}'`
+                );
+            } else {
+                await db.query(
+                    `DELETE FROM postaladdresses WHERE p_id = '${id}'`
                 );
             }
             postaladdresses.forEach(postaladdress => {
