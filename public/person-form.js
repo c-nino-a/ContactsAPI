@@ -58,12 +58,12 @@ modules['person-form-js'] = function(_html) {
                     </td>
                     <td class='field'>
                         <input type="hidden" name="postaladdresses[${ind}].id" value=>
-                        <input type='text ' name='postaladdresses[${ind}].street ' value=></td>
+                        <input type='text ' name='postaladdresses[${ind}].street' value=></td>
                     <td class='field'>
-                        <input type='text ' name='postaladdresses[${ind}].city ' value=>
+                        <input type='text ' name='postaladdresses[${ind}].city' value=>
                     </td>
                     <td class='field'>
-                        <input type='text ' name='postaladdresses[${ind}].zipcode ' value=>
+                        <input type='text ' name='postaladdresses[${ind}].zipcode' value=>
                     </td>
 
                 </tr>`
@@ -96,18 +96,21 @@ modules['person-form-js'] = function(_html) {
 
         e.preventDefault()
         var form = $(this)
+        var data = form.serializeToJSON({ associativeArrays: false });
+        console.log(data)
         app.ajax({
 
             url: '/contact',
             type: 'POST',
-            data: form.serializeToJSON({ associativeArrays: true }),
+            data: data,
             success: function() {
+                location.hash = "";
                 form.find('#msg').show().delay(3000).fadeOut()
 
             }
 
         })
-
+        return false
     })
 
 }

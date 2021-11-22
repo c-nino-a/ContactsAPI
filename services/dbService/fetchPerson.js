@@ -17,11 +17,11 @@ module.exports = async(id) => {
 
         postaladdresses
         
-        FROM people p
+        FROM people as p
         
-        LEFT JOIN postaladdresses pa
+        LEFT JOIN postaladdresses as pa
 
-        ON p.p_id = pa.p_id
+        ON pa.p_id = p.p_id
         
         
         WHERE p.p_id=$1

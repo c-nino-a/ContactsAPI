@@ -1,7 +1,7 @@
 const dbPool = require('./dbPool')
 const { v4: uuidv4 } = require('uuid')
 
-module.exports = async({ firstname, lastname, id, emailaddresses, postaladdresses }) => {
+module.exports = async({ id, firstname, lastname, emailaddresses, postaladdresses }) => {
 
     let db = null;
     try {
@@ -48,7 +48,7 @@ module.exports = async({ firstname, lastname, id, emailaddresses, postaladdresse
                     `DELETE FROM postaladdresses WHERE p_id = '${id}'`
                 );
             }
-            postaladdresses.forEach(postaladdress => {
+            postaladdresses?.forEach(postaladdress => {
                 if (postaladdress == "") {
                     console.log("Empty Postal Address");
                     return;
@@ -69,10 +69,10 @@ module.exports = async({ firstname, lastname, id, emailaddresses, postaladdresse
     } catch (err) {
 
         console.log(err)
-        await db.query('ROLLBACK')
+        await db?.query('ROLLBACK')
 
     } finally {
-        if (db) db.release()
+        db?.release()
     }
 
 

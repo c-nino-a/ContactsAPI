@@ -1,6 +1,7 @@
 const dbPool = require('./dbPool')
 
-module.exports = async id => {
+module.exports = async (id) => {
+    let db=null;
     try {
 
         const db = await dbPool.connect()
@@ -9,12 +10,12 @@ module.exports = async id => {
 
         await db.query(
 
-            'DELETE FROM people WHERE p_id=' + id
+            `DELETE FROM people WHERE p_id='${id}'`
         )
 
         await db.query(
 
-            'DELETE FROM postaladdresses WHERE p_id=' + id
+            `DELETE FROM postaladdresses WHERE p_id='${id}'`
         )
 
         await db.query("COMMIT");
@@ -22,10 +23,10 @@ module.exports = async id => {
 
         console.log(error);
 
-        await db.query("ROLLBACK");
+        await db?.query("ROLLBACK");
 
     } finally {
 
-        db.release();
+        db?.release();
     }
 }

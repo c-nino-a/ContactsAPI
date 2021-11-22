@@ -3,18 +3,18 @@ require('dotenv').config()
 const cryptService = require('./services/cryptService')
 const express = require('express')
 const fetchPeople = require('./services/dbService/fetchPeople')
-const server = express()
+var server = express()
 
 
 
 server
+    .set('view engine', 'ejs')
     .use(express.json())
     .use(express.urlencoded({ extended: true }))
-    .set('view engine', 'ejs')
     .use(express.static('public'))
 
 
-.listen(3001, () => {
+.listen(3000, () => {
     console.log("server running")
 })
 

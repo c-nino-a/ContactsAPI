@@ -40,12 +40,12 @@ $(function() {
         var tr = btn.closest('tr')
         var id = tr.data('id')
         var children = tr.children()
-        var firstname = children.eq(1).html()
-        var lastname = children.eq(2).html()
+        var firstname = children.eq(0).html()
+        var lastname = children.eq(1).html()
 
         if (confirm(`Are you sure about deleting ${firstname} ${lastname}?`)) {
             app.ajax({
-                url: '/contact/' + id,
+                url: '/delete/' + id,
                 type: 'DELETE',
                 success: function() {
                     tr.remove()
@@ -55,6 +55,7 @@ $(function() {
             })
 
             alert("Entry deleted.")
+
         }
 
 
@@ -84,6 +85,7 @@ $(function() {
                 $('#content').fadeIn()
             }
         })
+
     }
 })
 
